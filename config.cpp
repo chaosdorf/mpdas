@@ -1,4 +1,6 @@
 #include "mpdas.h"
+#include <iostream>
+#include <cstdlib>
 
 CConfig* Config = 0;
 
@@ -77,4 +79,9 @@ CConfig::CConfig(char* cfg)
 	}
 
 	LoadConfig(path);
+
+  if(const char* mhost = std::getenv("MPD_SERVER")) _mhost = mhost;
+  if(const char* debug = std::getenv("DEBUG")) _debug = debug;
+  if(const char* lusername = std::getenv("LASTFM_USERNAME")) _lusername = lusername;
+  if(const char* lpassword = std::getenv("LASTFM_PASSWORD_MD5")) _lpassword = lpassword;
 }
